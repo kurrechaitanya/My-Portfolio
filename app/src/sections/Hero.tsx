@@ -1,6 +1,4 @@
 import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-
 import WorldMapNetwork from "../components/3d/WorldMapNetwork"
 import NeuralNetworkBackground from "../components/NeuralNetworkBackground"
 import ParticleBackground from "../components/ParticleBackground"

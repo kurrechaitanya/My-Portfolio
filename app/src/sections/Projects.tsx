@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+git rm -r --cached distimport { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Folder, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';

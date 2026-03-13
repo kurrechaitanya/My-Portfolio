@@ -48,8 +48,7 @@ export default function WorldMapNetwork() {
   const [hovered, setHovered] = useState<HoveredCountry | null>(null)
 
   useEffect(() => {
-    const width = 1100
-    const height = 700
+    
 
   const svg = d3
   .select(svgRef.current)
@@ -106,7 +105,7 @@ svg.style("transform", "none")
           })
 
           .on("mouseout", function () {
-            d3.select(this)
+            d3.select(this as any)
               .attr("fill", "#0a2a35")
               .attr("opacity", 0.85)
               .style("filter", "none")

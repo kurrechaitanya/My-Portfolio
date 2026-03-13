@@ -1,184 +1,267 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { 
-  Terminal, Shield, Search, Cpu, Database, 
-  Globe, Lock, Zap, Code2, FileCode, 
-  Layers, Container, Box, Github
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { LucideIcon } from 'lucide-react';
+import {
+  Code2,
+  Database,
+  GitBranch,
+  Container,
+  Cloud,
+  Brain,
+  Layout,
+  Server,
+  FileCode,
+  Layers,
+  Zap,
+  Cpu,
 } from 'lucide-react';
 
-// Refined Data from your Skill Matrix
-const languages = [
-  { name: 'Python', level: 88, color: '#00d4ff' },
-  { name: 'C / C++', level: 82, color: '#00d4ff' },
-  { name: 'Java', level: 70, color: '#00d4ff' },
-  { name: 'SQL', level: 73, color: '#00d4ff' },
-  { name: 'Bash', level: 65, color: '#00d4ff' },
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const securityTools = [
-  { name: 'Kali Linux', icon: Terminal },
-  { name: 'Wireshark', icon: Search },
-  { name: 'Nmap', icon: Globe },
-  { name: 'Burp Suite', icon: Lock },
-  { name: 'Metasploit', icon: Shield },
-  { name: 'Netcat', icon: Zap },
-];
+interface Skill {
+  name: string;
+  icon: LucideIcon;
+  level: number;
+  orbit: number;
+}
 
-const roadmap = [
-  { name: 'Security+', status: 'In Progress', year: '2026', color: 'text-green-400' },
-  { name: 'eJPT', status: 'Planned', year: '2026', color: 'text-cyan-400' },
-  { name: 'OSCP', status: 'Target', year: '2027', color: 'text-purple-400' },
+const skills: Skill[] = [
+  { name: 'Python', icon: FileCode, level: 90, orbit: 0 },
+  { name: 'JavaScript', icon: Code2, level: 85, orbit: 0 },
+  { name: 'React', icon: Layout, level: 88, orbit: 1 },
+  { name: 'Node.js', icon: Server, level: 82, orbit: 1 },
+  { name: 'MongoDB', icon: Database, level: 78, orbit: 1 },
+  { name: 'SQL', icon: Database, level: 80, orbit: 2 },
+  { name: 'Git', icon: GitBranch, level: 85, orbit: 2 },
+  { name: 'Docker', icon: Container, level: 70, orbit: 2 },
+  { name: 'AWS', icon: Cloud, level: 65, orbit: 0 },
+  { name: 'Machine Learning', icon: Brain, level: 75, orbit: 1 },
+  { name: 'TypeScript', icon: Layers, level: 80, orbit: 2 },
+  { name: 'System Design', icon: Cpu, level: 72, orbit: 0 },
 ];
 
 export default function Skills() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const coreRef = useRef<HTMLDivElement>(null);
+  const orbitsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Entry animations for cards
-      gsap.from(".skill-card", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out"
+      // Core animation
+      gsap.fromTo(
+        coreRef.current,
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Orbits animation
+      gsap.fromTo(
+        '.orbit-ring',
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 60%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Skill nodes animation
+      gsap.fromTo(
+        '.skill-node',
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.4,
+          stagger: 0.08,
+          ease: 'elastic.out(1, 0.5)',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 50%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Continuous orbit rotation
+      gsap.to('.orbit-ring-0', {
+        rotation: 360,
+        duration: 30,
+        repeat: -1,
+        ease: 'none',
       });
-      // Progress bar fill animation
-      gsap.from(".progress-bar", {
-        width: 0,
-        duration: 1.5,
-        delay: 0.5,
-        ease: "power4.out"
+
+      gsap.to('.orbit-ring-1', {
+        rotation: -360,
+        duration: 40,
+        repeat: -1,
+        ease: 'none',
       });
-    }, containerRef);
+
+      gsap.to('.orbit-ring-2', {
+        rotation: 360,
+        duration: 50,
+        repeat: -1,
+        ease: 'none',
+      });
+    }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
+  // Group skills by orbit
+  const skillsByOrbit = [0, 1, 2].map((orbitIndex) =>
+    skills.filter((skill) => skill.orbit === orbitIndex)
+  );
+
+  const orbitRadii = [140, 220, 300];
+
   return (
-    <section 
-      id="skills" 
-      ref={containerRef} 
-      className="relative h-screen w-full bg-[#020408] text-[#c8d8e8] font-mono overflow-hidden flex flex-col p-6 lg:p-10"
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="relative min-h-screen w-full flex items-center justify-center py-20 overflow-hidden"
     >
-      {/* Background Orbs & Grid to match About Page */}
-      <div className="absolute inset-0 cyber-grid opacity-20 pointer-events-none" />
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/5 blur-[100px] rounded-full" />
-      <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-500/5 blur-[100px] rounded-full" />
+      {/* Background */}
+      <div className="absolute inset-0 cyber-grid opacity-30" />
+      
+      {/* Radial gradient */}
+      <div className="absolute inset-0 bg-gradient-radial from-cyan-500/5 via-transparent to-transparent" />
 
-      {/* Header Segment */}
-      <div className="relative z-10 mb-8 text-center">
-        <h1 className="font-orbitron text-4xl font-black tracking-widest text-white uppercase">
-          SKILL <span className="text-cyan-400 drop-shadow-[0_0_10px_#00d4ff]">MATRIX</span>
-        </h1>
-        <div className="h-px w-32 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto mt-2" />
-        <p className="text-[10px] text-slate-500 uppercase tracking-[0.3em] mt-3">
-          // Capability Scan: Initializing Profile Kurre Chaitanya
-        </p>
-      </div>
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-4">
+            <Zap className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm text-cyan-300 font-mono-tech">EXPERTISE</span>
+          </div>
+          <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-white mb-4">
+            SKILL <span className="text-cyan-400">GALAXY</span>
+          </h2>
+          <p className="text-gray-400 max-w-xl mx-auto">
+            Technologies and tools I work with to bring ideas to life
+          </p>
+        </div>
 
-      {/* Main Grid: Balanced to fit one screen */}
-      <div className="relative z-10 flex-1 grid grid-cols-12 gap-6 min-h-0">
-        
-        {/* LEFT: Languages & Core Stats (4 Cols) */}
-        <div className="col-span-12 lg:col-span-4 flex flex-col gap-6">
-          <div className="skill-card flex-1 bg-[#080d12]/80 border border-white/10 rounded-lg p-5 backdrop-blur-sm">
-            <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-2">
-              <Code2 className="w-4 h-4 text-cyan-400" />
-              <h2 className="text-xs font-bold uppercase tracking-tighter text-white font-orbitron">Programming</h2>
+        {/* Orbital System */}
+        <div
+          ref={orbitsRef}
+          className="relative w-full max-w-[700px] h-[700px] mx-auto"
+        >
+          {/* Orbit Rings */}
+          {orbitRadii.map((radius, index) => (
+            <div
+              key={index}
+              className={`orbit-ring orbit-ring-${index} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/20`}
+              style={{
+                width: radius * 2,
+                height: radius * 2,
+              }}
+            />
+          ))}
+
+          {/* Core */}
+          <div
+            ref={coreRef}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+          >
+            <div className="relative">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                <Cpu className="w-10 h-10 text-white" />
+              </div>
+              <div className="absolute -inset-4 rounded-full border-2 border-cyan-500/30 animate-pulse" />
+              <div className="absolute -inset-8 rounded-full border border-cyan-500/20" />
             </div>
-            <div className="space-y-5">
-              {languages.map((lang) => (
-                <div key={lang.name}>
-                  <div className="flex justify-between text-[11px] mb-1.5 font-bold uppercase">
-                    <span>{lang.name}</span>
-                    <span className="text-cyan-400">{lang.level}%</span>
-                  </div>
-                  <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                    <div 
-                      className="progress-bar h-full bg-cyan-400 shadow-[0_0_10px_#00d4ff]"
-                      style={{ width: `${lang.level}%` }}
+          </div>
+
+          {/* Skill Nodes */}
+          {skillsByOrbit.map((orbitSkills, orbitIndex) =>
+            orbitSkills.map((skill, skillIndex) => {
+              const angle =
+                (skillIndex / orbitSkills.length) * 360 +
+                orbitIndex * 30;
+              const radius = orbitRadii[orbitIndex];
+              const x = Math.cos((angle * Math.PI) / 180) * radius;
+              const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+              return (
+                <div
+                  key={skill.name}
+                  className="skill-node absolute top-1/2 left-1/2 z-10"
+                  style={{
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                  }}
+                >
+                  <div className="group relative">
+                    {/* Node */}
+                    <div className="w-16 h-16 rounded-xl glass-panel flex items-center justify-center cursor-pointer hover:border-cyan-500/60 transition-all duration-300 hover:scale-110 group-hover:shadow-lg group-hover:shadow-cyan-500/20">
+                      <skill.icon className="w-7 h-7 text-cyan-400" />
+                    </div>
+
+                    {/* Tooltip */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="glass-panel-strong rounded-lg px-4 py-2 whitespace-nowrap">
+                        <div className="font-orbitron font-bold text-white text-sm">
+                          {skill.name}
+                        </div>
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className="w-16 h-1 bg-gray-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                              style={{ width: `${skill.level}%` }}
+                            />
+                          </div>
+                          <span className="text-xs text-cyan-400 font-mono-tech">
+                            {skill.level}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Connection line to center */}
+                    <div
+                      className="absolute top-1/2 left-1/2 w-px bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0 origin-left -z-10"
+                      style={{
+                        width: radius,
+                        transform: `rotate(${angle + 180}deg)`,
+                      }}
                     />
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              );
+            })
+          )}
         </div>
 
-        {/* CENTER: Security Tools & Knowledge Base (5 Cols) */}
-        <div className="col-span-12 lg:col-span-5 flex flex-col gap-6">
-          <div className="skill-card flex-1 bg-[#080d12]/80 border border-white/10 rounded-lg p-5 backdrop-blur-sm">
-            <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-2">
-              <Shield className="w-4 h-4 text-cyan-400" />
-              <h2 className="text-xs font-bold uppercase tracking-tighter text-white font-orbitron">Security Arsenal</h2>
+        {/* Skills List (Mobile) */}
+        <div className="lg:hidden mt-12 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="glass-panel rounded-lg p-4 flex items-center gap-3"
+            >
+              <skill.icon className="w-5 h-5 text-cyan-400" />
+              <span className="text-sm text-white">{skill.name}</span>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              {securityTools.map((tool) => (
-                <div key={tool.name} className="flex items-center gap-3 bg-[#0a1018] border border-white/5 p-3 rounded group hover:border-cyan-500/50 transition-all">
-                  <tool.icon className="w-5 h-5 text-cyan-500 group-hover:text-cyan-300" />
-                  <span className="text-[10px] uppercase font-bold tracking-wider">{tool.name}</span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="mt-8">
-              <h3 className="text-[10px] text-slate-500 uppercase mb-4 tracking-widest border-l-2 border-cyan-500 pl-2">Knowledge Base</h3>
-              <div className="flex flex-wrap gap-2">
-                {['OWASP Top 10', 'TCP/IP', 'SQLi', 'XSS', 'Linux Internals', 'Cryptography'].map(tag => (
-                  <span key={tag} className="text-[9px] px-2 py-1 bg-cyan-500/5 border border-cyan-500/20 text-cyan-300 rounded uppercase">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT: Roadmap & Stats (3 Cols) */}
-        <div className="col-span-12 lg:col-span-3 flex flex-col gap-6">
-          <div className="skill-card flex-1 bg-[#080d12]/80 border border-white/10 rounded-lg p-5 backdrop-blur-sm">
-            <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-2">
-              <Zap className="w-4 h-4 text-cyan-400" />
-              <h2 className="text-xs font-bold uppercase tracking-tighter text-white font-orbitron">Roadmap</h2>
-            </div>
-            <div className="space-y-4">
-              {roadmap.map((cert) => (
-                <div key={cert.name} className="border-l-2 border-white/10 pl-4 py-1 hover:border-cyan-500 transition-colors">
-                  <div className="text-[11px] font-bold text-white uppercase">{cert.name}</div>
-                  <div className={`text-[9px] font-bold ${cert.color} uppercase tracking-widest mt-0.5`}>
-                    {cert.status} • {cert.year}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="skill-card bg-cyan-500/5 border border-cyan-500/20 rounded-lg p-5">
-            <div className="grid grid-cols-2 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-black text-white font-orbitron">9.68</div>
-                <div className="text-[9px] text-cyan-500 uppercase font-bold mt-1">CGPA</div>
-              </div>
-              <div>
-                <div className="text-2xl font-black text-white font-orbitron">130+</div>
-                <div className="text-[9px] text-cyan-500 uppercase font-bold mt-1">Lab Hours</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Terminal Footer */}
-      <div className="relative z-10 mt-8 bg-[#080d12] border border-white/5 p-2 px-6 rounded-md flex justify-between items-center text-[10px] text-slate-500">
-        <div className="flex gap-6">
-          <span className="flex items-center gap-1.5 uppercase font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_#22c55e]" />
-            System Ready
-          </span>
-          <span className="hidden md:inline uppercase tracking-widest">Environment: Kali-Linux</span>
-        </div>
-        <div className="text-cyan-500/80 font-bold font-mono tracking-tighter">
-          KURRE_CHAITANYA@HIT:~/skills$_
+          ))}
         </div>
       </div>
     </section>

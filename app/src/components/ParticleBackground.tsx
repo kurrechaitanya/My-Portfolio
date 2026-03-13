@@ -4,7 +4,7 @@ import { useRef } from "react"
 
 function Particles() {
 
-  const ref = useRef<any>()
+  const ref = useRef<any>(null)
 
   const particles = new Float32Array(2000)
 
