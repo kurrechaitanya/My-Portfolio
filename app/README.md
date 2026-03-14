@@ -1,5 +1,3 @@
-Here is plain text only — no badges, no images, no emojis:
-
 Kurre Chaitanya — Cybersecurity Portfolio
 Offensive Security Developer · Red Team Tool Builder · AI-Assisted Security Researcher
 Live — https://my-portfolio-ybfj.vercel.app
