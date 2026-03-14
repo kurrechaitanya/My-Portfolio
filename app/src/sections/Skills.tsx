@@ -1,29 +1,29 @@
 import { useState } from 'react';
  
 const TOOLS = [
-  { name: 'Burp Suite', desc: 'Web app interception · OWASP testing' },
-  { name: 'Metasploit', desc: 'Exploitation · Post exploitation' },
-  { name: 'Nmap',       desc: 'Network recon · Service enumeration' },
+  { name: 'Burp Suite', desc: 'SQLi & XSS testing · OWASP testing' },
+  { name: 'Metasploit', desc: 'Exploitation · Payload generation' },
+  { name: 'Nmap',       desc: 'Port scanning · OS fingerprinting' },
   { name: 'Wireshark',  desc: 'Packet capture · Traffic analysis' },
   { name: 'Kali Linux', desc: 'Primary attack OS · Daily driver' },
-  { name: 'Netcat',     desc: 'Reverse shells · Port forwarding' },
+  { name: 'Netcat',     desc: 'Reverse shells · Bind shells' },
 ];
  
 const LANGS = [
   { name: 'Python', ctx: 'Exploit scripts · Recon automation · CTF solving' },
-  { name: 'C',      ctx: 'Buffer overflows · Shellcode · Memory exploitation' },
+  { name: 'C',      ctx: 'Buffer overflows · Shellcode writing  · Memory exploitation' },
   { name: 'C++',    ctx: 'Process injection · Win32 API · Malware analysis' },
-  { name: 'Java',   ctx: 'Secure API development · Deserialization analysis' },
-  { name: 'SQL',    ctx: 'Injection attacks · Database enumeration' },
-  { name: 'Bash',   ctx: 'Post exploitation · Automation · Scripting' },
+  { name: 'Java',   ctx: 'Secure code review · API security . Full stack context  ' },
+  { name: 'SQL',    ctx: 'SQL injection · Database enumeration . Auth bypass' },
+  { name: 'Bash',   ctx: 'Post exploitation · Tool automation · Reverse shells' },
 ];
  
 const PLATFORMS = [
-  { name: 'Kali Linux',  desc: 'Primary OS · Real lab environment' },
-  { name: 'HackTheBox',  desc: 'Active · Machine exploitation' },
-  { name: 'TryHackMe',   desc: 'Active · Jr Penetration Tester path' },
-  { name: 'VirtualBox',  desc: 'Isolated lab · Safe exploitation' },
+   { name: 'HackTheBox',  desc: 'Active ·  Machine exploitation' },
+  { name: 'TryHackMe',   desc: 'Jr Penetration Tester path' },
+  { name: 'VirtualBox',  desc: 'Isolated lab · Malware analysis' },
   { name: 'GitHub',      desc: 'Tool development · Daily commits' },
+   { name: 'VS Code',  desc: 'Primary IDE · Security tooling' },
 ];
  
 const CERTS = [
@@ -235,7 +235,7 @@ export default function Skills() {
             <span>{s.text}</span>
           </div>
         ))}
-        <span style={{ marginLeft: 'auto', color: '#00f0ff', letterSpacing: '0.08em' }}>KURRE_CHAITANYA@HIT:~/skills$_</span>
+        
       </div>
  
     </section>
