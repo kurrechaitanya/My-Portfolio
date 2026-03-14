@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+Here is plain text only — no badges, no images, no emojis:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kurre Chaitanya — Cybersecurity Portfolio
+Offensive Security Developer · Red Team Tool Builder · AI-Assisted Security Researcher
+Live — https://my-portfolio-ybfj.vercel.app
 
-Currently, two official plugins are available:
+About
+Second-year B.Tech Cybersecurity student at Hindustan Institute of Technology, Chennai with a CGPA of 9.68.
+Proficient in Python, C, C++, Java, SQL and Bash with hands-on experience using Burp Suite, Metasploit, Nmap, Wireshark and Kali Linux across real lab environments.
+Competed and won at college-level CTF events — actively sharpening offensive skills through web exploitation, network analysis and binary challenges.
+Currently preparing for CompTIA Security+ while building security tools that combine red team thinking with AI-assisted automation.
+"Understand how systems break in order to build ones that don't."
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tech Stack
 
-## React Compiler
+React 18 + TypeScript
+Tailwind CSS + Custom CSS
+GSAP + ScrollTrigger animations
+Orbitron · Share Tech Mono · Rajdhani fonts
+Deployed on Vercel with Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+Skills
+Offensive Tools — Burp Suite · Metasploit · Nmap · Wireshark · Netcat · Gobuster
+Languages — Python · C · C++ · Java · SQL · Bash
+Platforms — HackTheBox · TryHackMe · Kali Linux · VirtualBox · GitHub
+Certifications — Security+ In Progress · eJPT Planned · OSCP 2028 · CRTO 2030
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Run Locally
+git clone https://github.com/kurrechaitanya/My-Portfolio.git
+cd My-Portfolio
+npm install
+npm run dev
+Open http://localhost:5173 in your browser.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Roadmap
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Build Projects page with real security tools
+Add CTF writeup section
+Add HackTheBox and TryHackMe rank badges
+Integrate GitHub activity feed
+Add security research blog
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Contact
+Portfolio — https://my-portfolio-ybfj.vercel.app
+GitHub — https://github.com/kurrechaitanya
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+License
+MIT License — feel free to use this as inspiration for your own portfolio.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Built with focus · Driven by curiosity · Secured by design
