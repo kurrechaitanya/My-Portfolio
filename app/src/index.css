@@ -358,3 +358,16 @@
 .animate-blink {
   animation: blink 1s infinite;
 }
+@media (max-width: 768px) {
+  .font-orbitron.font-black {
+    font-size: 2.2rem;
+  }
+
+  .network-layer {
+    display: none;
+  }
+
+  #home .fixed {
+    display: none;
+  }
+}

@@ -65,7 +65,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl py-24 pl-10">
 
         {/* ── 3 COUNTERS (replaces old single counter) ── */}
-        <div className="fixed top-6 right-10 font-mono text-sm tracking-widest gap-6 hidden md:flex z-50">
+        <div className="absolute top-6 right-10 font-mono text-sm tracking-widest flex gap-6">
           <div>
             <span className="text-gray-500">ATTACKS </span>
             <span id="attack-counter" className="text-red-400 font-bold">0</span>
