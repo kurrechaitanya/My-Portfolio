@@ -1,269 +1,259 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import type { LucideIcon } from 'lucide-react';
-import {
-  Code2,
-  Database,
-  GitBranch,
-  Container,
-  Cloud,
-  Brain,
-  Layout,
-  Server,
-  FileCode,
-  Layers,
-  Zap,
-  Cpu,
-} from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
-
-interface Skill {
-  name: string;
-  icon: LucideIcon;
-  level: number;
-  orbit: number;
-}
-
-const skills: Skill[] = [
-  { name: 'Python', icon: FileCode, level: 90, orbit: 0 },
-  { name: 'JavaScript', icon: Code2, level: 85, orbit: 0 },
-  { name: 'React', icon: Layout, level: 88, orbit: 1 },
-  { name: 'Node.js', icon: Server, level: 82, orbit: 1 },
-  { name: 'MongoDB', icon: Database, level: 78, orbit: 1 },
-  { name: 'SQL', icon: Database, level: 80, orbit: 2 },
-  { name: 'Git', icon: GitBranch, level: 85, orbit: 2 },
-  { name: 'Docker', icon: Container, level: 70, orbit: 2 },
-  { name: 'AWS', icon: Cloud, level: 65, orbit: 0 },
-  { name: 'Machine Learning', icon: Brain, level: 75, orbit: 1 },
-  { name: 'TypeScript', icon: Layers, level: 80, orbit: 2 },
-  { name: 'System Design', icon: Cpu, level: 72, orbit: 0 },
+import { useState } from 'react';
+ 
+const TOOLS = [
+  { name: 'Burp Suite', desc: 'Web app interception · OWASP testing' },
+  { name: 'Metasploit', desc: 'Exploitation · Post exploitation' },
+  { name: 'Nmap',       desc: 'Network recon · Service enumeration' },
+  { name: 'Wireshark',  desc: 'Packet capture · Traffic analysis' },
+  { name: 'Kali Linux', desc: 'Primary attack OS · Daily driver' },
+  { name: 'Netcat',     desc: 'Reverse shells · Port forwarding' },
 ];
-
-export default function Skills() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const coreRef = useRef<HTMLDivElement>(null);
-  const orbitsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Core animation
-      gsap.fromTo(
-        coreRef.current,
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.6,
-          ease: 'back.out(1.7)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Orbits animation
-      gsap.fromTo(
-        '.orbit-ring',
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Skill nodes animation
-      gsap.fromTo(
-        '.skill-node',
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.4,
-          stagger: 0.08,
-          ease: 'elastic.out(1, 0.5)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 50%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Continuous orbit rotation
-      gsap.to('.orbit-ring-0', {
-        rotation: 360,
-        duration: 30,
-        repeat: -1,
-        ease: 'none',
-      });
-
-      gsap.to('.orbit-ring-1', {
-        rotation: -360,
-        duration: 40,
-        repeat: -1,
-        ease: 'none',
-      });
-
-      gsap.to('.orbit-ring-2', {
-        rotation: 360,
-        duration: 50,
-        repeat: -1,
-        ease: 'none',
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Group skills by orbit
-  const skillsByOrbit = [0, 1, 2].map((orbitIndex) =>
-    skills.filter((skill) => skill.orbit === orbitIndex)
-  );
-
-  const orbitRadii = [140, 220, 300];
-
+ 
+const LANGS = [
+  { name: 'Python', ctx: 'Exploit scripts · Recon automation · CTF solving' },
+  { name: 'C',      ctx: 'Buffer overflows · Shellcode · Memory exploitation' },
+  { name: 'C++',    ctx: 'Process injection · Win32 API · Malware analysis' },
+  { name: 'Java',   ctx: 'Secure API development · Deserialization analysis' },
+  { name: 'SQL',    ctx: 'Injection attacks · Database enumeration' },
+  { name: 'Bash',   ctx: 'Post exploitation · Automation · Scripting' },
+];
+ 
+const PLATFORMS = [
+  { name: 'Kali Linux',  desc: 'Primary OS · Real lab environment' },
+  { name: 'HackTheBox',  desc: 'Active · Machine exploitation' },
+  { name: 'TryHackMe',   desc: 'Active · Jr Penetration Tester path' },
+  { name: 'VirtualBox',  desc: 'Isolated lab · Safe exploitation' },
+  { name: 'GitHub',      desc: 'Tool development · Daily commits' },
+];
+ 
+const CERTS = [
+  { short: 'Security+', full: 'CompTIA SY0-701', year: '2026', status: 'IN PROGRESS', color: '#00d4ff', active: true },
+  { short: 'eJPT',      full: 'eLearnSecurity',  year: '2026', status: 'PLANNED',     color: '#7a9ab0', active: false },
+  { short: 'OSCP',      full: 'OffSec PEN-200',  year: '2028', status: 'TARGET',      color: '#aa88ff', active: false },
+  { short: 'CRTO',      full: 'Zero-Point Sec',  year: '2030', status: 'TARGET',      color: '#aa88ff', active: false },
+];
+ 
+const STATUS = [
+  { dot: '#00ff88', text: 'SYSTEM ONLINE' },
+  { dot: '#00d4ff', text: '6 LANGUAGES' },
+  { dot: '#00d4ff', text: '6 TOOLS ACTIVE' },
+  { dot: '#ffcc00', text: 'SECURITY+ IN PROGRESS' },
+  { dot: '#ff3366', text: 'CTF MODE: ENABLED' },
+];
+ 
+function THead({ label }: { label: string }) {
   return (
-    <section
-      ref={sectionRef}
-      id="skills"
-      className="relative min-h-screen w-full flex items-center justify-center py-20 overflow-hidden"
-    >
-      {/* Background */}
-      <div className="absolute inset-0 cyber-grid opacity-30" />
-      
-      {/* Radial gradient */}
-      <div className="absolute inset-0 bg-gradient-radial from-cyan-500/5 via-transparent to-transparent" />
-
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-4">
-            <Zap className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm text-cyan-300 font-mono-tech">EXPERTISE</span>
-          </div>
-          <h2 className="font-orbitron text-3xl sm:text-4xl font-bold text-white mb-4">
-            SKILL <span className="text-cyan-400">GALAXY</span>
-          </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            Technologies and tools I work with to bring ideas to life
-          </p>
-        </div>
-
-        {/* Orbital System */}
-        <div
-          ref={orbitsRef}
-          className="relative w-full max-w-[700px] h-[700px] mx-auto"
-        >
-          {/* Orbit Rings */}
-          {orbitRadii.map((radius, index) => (
-            <div
-              key={index}
-              className={`orbit-ring orbit-ring-${index} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/20`}
-              style={{
-                width: radius * 2,
-                height: radius * 2,
-              }}
-            />
-          ))}
-
-          {/* Core */}
-          <div
-            ref={coreRef}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-          >
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
-                <Cpu className="w-10 h-10 text-white" />
-              </div>
-              <div className="absolute -inset-4 rounded-full border-2 border-cyan-500/30 animate-pulse" />
-              <div className="absolute -inset-8 rounded-full border border-cyan-500/20" />
-            </div>
-          </div>
-
-          {/* Skill Nodes */}
-          {skillsByOrbit.map((orbitSkills, orbitIndex) =>
-            orbitSkills.map((skill, skillIndex) => {
-              const angle =
-                (skillIndex / orbitSkills.length) * 360 +
-                orbitIndex * 30;
-              const radius = orbitRadii[orbitIndex];
-              const x = Math.cos((angle * Math.PI) / 180) * radius;
-              const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-              return (
-                <div
-                  key={skill.name}
-                  className="skill-node absolute top-1/2 left-1/2 z-10"
-                  style={{
-                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                  }}
-                >
-                  <div className="group relative">
-                    {/* Node */}
-                    <div className="w-16 h-16 rounded-xl glass-panel flex items-center justify-center cursor-pointer hover:border-cyan-500/60 transition-all duration-300 hover:scale-110 group-hover:shadow-lg group-hover:shadow-cyan-500/20">
-                      <skill.icon className="w-7 h-7 text-cyan-400" />
-                    </div>
-
-                    {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <div className="glass-panel-strong rounded-lg px-4 py-2 whitespace-nowrap">
-                        <div className="font-orbitron font-bold text-white text-sm">
-                          {skill.name}
-                        </div>
-                        <div className="flex items-center gap-2 mt-1">
-                          <div className="w-16 h-1 bg-gray-700 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-to-r from-cyan-400 to-blue-500"
-                              style={{ width: `${skill.level}%` }}
-                            />
-                          </div>
-                          <span className="text-xs text-cyan-400 font-mono-tech">
-                            {skill.level}%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Connection line to center */}
-                    <div
-                      className="absolute top-1/2 left-1/2 w-px bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0 origin-left -z-10"
-                      style={{
-                        width: radius,
-                        transform: `rotate(${angle + 180}deg)`,
-                      }}
-                    />
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
-
-        {/* Skills List (Mobile) */}
-        <div className="lg:hidden mt-12 grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="glass-panel rounded-lg p-4 flex items-center gap-3"
-            >
-              <skill.icon className="w-5 h-5 text-cyan-400" />
-              <span className="text-sm text-white">{skill.name}</span>
-            </div>
-          ))}
-        </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', background: '#0d1520', borderBottom: '1px solid rgba(0,212,255,0.12)', flexShrink: 0 }}>
+      {['#ff5f57', '#ffbd2e', '#28c940'].map((c, i) => (
+        <div key={i} style={{ width: 9, height: 9, borderRadius: '50%', background: c }} />
+      ))}
+      <span style={{ marginLeft: 6, fontSize: 13, color: '#7a9ab0', fontFamily: 'monospace', letterSpacing: '0.06em' }}>{label}</span>
+    </div>
+  );
+}
+ 
+function CTitle({ t }: { t: string }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexShrink: 0 }}>
+      <span style={{ color: '#00d4ff', fontSize: 13 }}>$</span>
+      <span style={{ fontFamily: 'Orbitron, monospace', fontSize: 10, fontWeight: 700, color: '#00d4ff', letterSpacing: '0.12em' }}>{t}</span>
+      <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg,rgba(0,212,255,0.2),transparent)' }} />
+    </div>
+  );
+}
+ 
+export default function Skills() {
+  const [hov, setHov] = useState<string | null>(null);
+ 
+  const card: React.CSSProperties = {
+    background: '#080d12',
+    border: '1px solid rgba(0,212,255,0.15)',
+    borderRadius: 8,
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 0,
+  };
+ 
+  const body: React.CSSProperties = {
+    padding: '10px 14px',
+    flex: 1,
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 0,
+  };
+ 
+  return (
+    <section id="skills" style={{
+      height: '100vh',
+      overflow: 'hidden',
+      background: 'transparent',
+      padding: '62px 40px 10px',
+      fontFamily: "'Share Tech Mono', monospace",
+      color: '#c8d8e8',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 8,
+    }}>
+ 
+      {/* TITLE */}
+      <div style={{ textAlign: 'center', flexShrink: 0 }}>
+        <h1 style={{ fontFamily: 'Orbitron, monospace', fontSize: 'clamp(18px,2.6vw,32px)', fontWeight: 900, letterSpacing: '0.1em', color: '#fff', margin: 0 }}>
+          SKILL <span style={{ color: '#00d4ff', textShadow: '0 0 20px #00d4ff, 0 0 40px rgba(0,212,255,0.4)' }}>MATRIX.EXE</span>
+        </h1>
+        <p style={{ fontSize: 12, color: '#7a9ab0', letterSpacing: '0.18em', margin: '3px 0 0' }}>
+          // CAPABILITY SCAN COMPLETE
+        </p>
       </div>
+ 
+      {/* MAIN GRID */}
+      <div style={{
+        flex: 1,
+        minHeight: 0,
+        display: 'grid',
+        gridTemplateColumns: '1fr 1.8fr 1fr',
+        gridTemplateRows: '1fr 0.75fr',
+        gap: 8,
+      }}>
+ 
+        {/* CARD 1 — OFFENSIVE CORE — spans both rows */}
+        <div style={{ ...card, gridRow: 'span 2' }}>
+          <THead label="offensive_core.exe" />
+          <div style={{ ...body, justifyContent: 'space-between', gap: 5 }}>
+            <CTitle t="Offensive Core" />
+            {TOOLS.map(tool => (
+              <div
+                key={tool.name}
+                onMouseEnter={() => setHov(tool.name)}
+                onMouseLeave={() => setHov(null)}
+                style={{
+                  padding: '7px 10px',
+                  borderRadius: 5,
+                  cursor: 'default',
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  background: hov === tool.name ? 'rgba(0,212,255,0.07)' : '#0a1018',
+                  border: `1px solid ${hov === tool.name ? 'rgba(0,212,255,0.5)' : 'rgba(0,212,255,0.1)'}`,
+                  boxShadow: hov === tool.name ? '0 0 12px rgba(0,212,255,0.08)' : 'none',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00ff88', boxShadow: '0 0 5px #00ff88', flexShrink: 0 }} />
+                  <span style={{ fontSize: 13, color: '#e8f4ff', fontWeight: 700 }}>{tool.name}</span>
+                </div>
+                <div style={{ fontSize: 12, color: '#7a9ab0', paddingLeft: 14 }}>{tool.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+ 
+        {/* CARD 2 — LANGUAGES — top center */}
+        <div style={card}>
+          <THead label="languages.sh" />
+          <div style={body}>
+            <CTitle t="Languages" />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 20px', flex: 1, alignContent: 'space-evenly' }}>
+              {LANGS.map(l => (
+                <div key={l.name} style={{ borderLeft: '2px solid rgba(0,212,255,0.35)', paddingLeft: 10 }}>
+                  <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 12, color: '#00d4ff', fontWeight: 700, marginBottom: 3 }}>{l.name}</div>
+                  <div style={{ fontSize: 12, color: '#7a9ab0', lineHeight: 1.4 }}>{l.ctx}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+ 
+        {/* CARD 3 — PLATFORMS — top right */}
+        <div style={card}>
+          <THead label="platforms.sh" />
+          <div style={{ ...body, justifyContent: 'space-between' }}>
+            <CTitle t="Platforms" />
+            {PLATFORMS.map(p => (
+              <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1 }}>
+                <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#00ff88', boxShadow: '0 0 4px #00ff88', flexShrink: 0 }} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 13, color: '#e8f4ff' }}>{p.name}</div>
+                  <div style={{ fontSize: 12, color: '#7a9ab0' }}>{p.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+ 
+        {/* CARD 4 — CERTIFICATIONS — bottom spans 2 cols */}
+        <div style={{ ...card, gridColumn: 'span 2' }}>
+          <THead label="certifications.exe — roadmap" />
+          <div style={body}>
+            <CTitle t="Certifications & Roadmap" />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, flex: 1, minHeight: 0 }}>
+              {CERTS.map(c => (
+                <div key={c.short} style={{
+                  background: '#0a1018',
+                  border: `1px solid ${c.active ? 'rgba(0,212,255,0.4)' : 'rgba(0,212,255,0.1)'}`,
+                  borderRadius: 6,
+                  padding: '6px 8px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 4,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  cursor: 'default',
+                  minHeight: 0,
+                }}>
+                  {c.active && (
+                    <div style={{ position: 'absolute', top: 8, right: -18, background: '#00d4ff', color: '#000', fontSize: 7, fontWeight: 700, padding: '2px 22px', transform: 'rotate(45deg)', letterSpacing: '0.04em' }}>
+                      ACTIVE
+                    </div>
+                  )}
+                  <div style={{ fontSize: 12, color: '#7a9ab0' }}>{c.year}</div>
+                  <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 14, fontWeight: 700, color: '#00d4ff' }}>{c.short}</div>
+                  <div style={{ fontSize: 13, color: '#c8d8e8', textAlign: 'center' }}>{c.full}</div>
+                  <span style={{ fontSize: 13, padding: '2px 7px', borderRadius: 3, border: `1px solid ${c.color}`, color: c.color, background: c.active ? 'rgba(0,212,255,0.08)' : 'transparent' }}>
+                    {c.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      {/* STATUS BAR */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '5px 16px', background: '#080d12', border: '1px solid rgba(0,212,255,0.15)', borderRadius: 5, fontSize: 12, color: '#7a9ab0', flexShrink: 0 }}>
+        {STATUS.map((s, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            {i > 0 && <span style={{ color: 'rgba(0,212,255,0.15)', marginRight: 4 }}>|</span>}
+            <div style={{ width: 5, height: 5, borderRadius: '50%', background: s.dot, boxShadow: `0 0 4px ${s.dot}` }} />
+            <span>{s.text}</span>
+          </div>
+        ))}
+        <span style={{ marginLeft: 'auto', color: '#00d4ff', letterSpacing: '0.08em' }}>KURRE_CHAITANYA@HIT:~/skills$_</span>
+      </div>
+ 
     </section>
   );
 }
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

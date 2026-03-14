@@ -10,6 +10,7 @@ import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import ZeroDayScreen from './components/ZeroDayScreen';  // ← ADD
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
