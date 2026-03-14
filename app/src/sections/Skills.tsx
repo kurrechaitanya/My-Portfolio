@@ -27,27 +27,27 @@ const PLATFORMS = [
 ];
  
 const CERTS = [
-  { short: 'Security+', full: 'CompTIA SY0-701', year: '2026', status: 'IN PROGRESS', color: '#00d4ff', active: true },
-  { short: 'eJPT',      full: 'eLearnSecurity',  year: '2026', status: 'PLANNED',     color: '#7a9ab0', active: false },
+  { short: 'Security+', full: 'CompTIA SY0-701', year: '2026', status: 'IN PROGRESS', color: '#00f0ff', active: true },
+  { short: 'eJPT',      full: 'eLearnSecurity',  year: '2026', status: 'PLANNED',     color: '#9ca3af', active: false },
   { short: 'OSCP',      full: 'OffSec PEN-200',  year: '2028', status: 'TARGET',      color: '#aa88ff', active: false },
   { short: 'CRTO',      full: 'Zero-Point Sec',  year: '2030', status: 'TARGET',      color: '#aa88ff', active: false },
 ];
  
 const STATUS = [
   { dot: '#00ff88', text: 'SYSTEM ONLINE' },
-  { dot: '#00d4ff', text: '6 LANGUAGES' },
-  { dot: '#00d4ff', text: '6 TOOLS ACTIVE' },
+  { dot: '#00f0ff', text: '6 LANGUAGES' },
+  { dot: '#00f0ff', text: '6 TOOLS ACTIVE' },
   { dot: '#ffcc00', text: 'SECURITY+ IN PROGRESS' },
   { dot: '#ff3366', text: 'CTF MODE: ENABLED' },
 ];
  
 function THead({ label }: { label: string }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', background: '#0d1520', borderBottom: '1px solid rgba(0,212,255,0.12)', flexShrink: 0 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', background: 'rgba(0, 0, 0, 0.5)', borderBottom: '1px solid rgba(0, 240, 255,0.12)', flexShrink: 0 }}>
       {['#ff5f57', '#ffbd2e', '#28c940'].map((c, i) => (
         <div key={i} style={{ width: 9, height: 9, borderRadius: '50%', background: c }} />
       ))}
-      <span style={{ marginLeft: 6, fontSize: 13, color: '#7a9ab0', fontFamily: 'monospace', letterSpacing: '0.06em' }}>{label}</span>
+      <span style={{ marginLeft: 6, fontSize: 13, color: '#9ca3af', fontFamily: 'monospace', letterSpacing: '0.06em' }}>{label}</span>
     </div>
   );
 }
@@ -55,9 +55,9 @@ function THead({ label }: { label: string }) {
 function CTitle({ t }: { t: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexShrink: 0 }}>
-      <span style={{ color: '#00d4ff', fontSize: 13 }}>$</span>
-      <span style={{ fontFamily: 'Orbitron, monospace', fontSize: 10, fontWeight: 700, color: '#00d4ff', letterSpacing: '0.12em' }}>{t}</span>
-      <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg,rgba(0,212,255,0.2),transparent)' }} />
+      <span style={{ color: '#00f0ff', fontSize: 13 }}>$</span>
+      <span style={{ fontFamily: 'Orbitron, monospace', fontSize: 10, fontWeight: 700, color: '#00f0ff', letterSpacing: '0.12em' }}>{t}</span>
+      <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg,rgba(0, 240, 255,0.2),transparent)' }} />
     </div>
   );
 }
@@ -66,8 +66,9 @@ export default function Skills() {
   const [hov, setHov] = useState<string | null>(null);
  
   const card: React.CSSProperties = {
-    background: '#080d12',
-    border: '1px solid rgba(0,212,255,0.15)',
+    background: 'rgba(10, 10, 10, 0.7)',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(0, 240, 255,0.15)',
     borderRadius: 8,
     overflow: 'hidden',
     display: 'flex',
@@ -100,9 +101,9 @@ export default function Skills() {
       {/* TITLE */}
       <div style={{ textAlign: 'center', flexShrink: 0 }}>
         <h1 style={{ fontFamily: 'Orbitron, monospace', fontSize: 'clamp(18px,2.6vw,32px)', fontWeight: 900, letterSpacing: '0.1em', color: '#fff', margin: 0 }}>
-          SKILL <span style={{ color: '#00d4ff', textShadow: '0 0 20px #00d4ff, 0 0 40px rgba(0,212,255,0.4)' }}>MATRIX.EXE</span>
+          SKILL <span style={{ color: '#00f0ff', textShadow: '0 0 20px #00f0ff, 0 0 40px rgba(0, 240, 255,0.4)' }}>MATRIX.EXE</span>
         </h1>
-        <p style={{ fontSize: 12, color: '#7a9ab0', letterSpacing: '0.18em', margin: '3px 0 0' }}>
+        <p style={{ fontSize: 12, color: '#9ca3af', letterSpacing: '0.18em', margin: '3px 0 0' }}>
           // CAPABILITY SCAN COMPLETE
         </p>
       </div>
@@ -135,17 +136,17 @@ export default function Skills() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
-                  background: hov === tool.name ? 'rgba(0,212,255,0.07)' : '#0a1018',
-                  border: `1px solid ${hov === tool.name ? 'rgba(0,212,255,0.5)' : 'rgba(0,212,255,0.1)'}`,
-                  boxShadow: hov === tool.name ? '0 0 12px rgba(0,212,255,0.08)' : 'none',
+                  background: hov === tool.name ? 'rgba(0, 240, 255,0.07)' : '#0a1018',
+                  border: `1px solid ${hov === tool.name ? 'rgba(0, 240, 255,0.5)' : 'rgba(0, 240, 255,0.1)'}`,
+                  boxShadow: hov === tool.name ? '0 0 12px rgba(0, 240, 255,0.08)' : 'none',
                   transition: 'all 0.2s ease',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
                   <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00ff88', boxShadow: '0 0 5px #00ff88', flexShrink: 0 }} />
-                  <span style={{ fontSize: 13, color: '#e8f4ff', fontWeight: 700 }}>{tool.name}</span>
+                  <span style={{ fontSize: 13, color: '#d1d5db', fontWeight: 700 }}>{tool.name}</span>
                 </div>
-                <div style={{ fontSize: 12, color: '#7a9ab0', paddingLeft: 14 }}>{tool.desc}</div>
+                <div style={{ fontSize: 12, color: '#9ca3af', paddingLeft: 14 }}>{tool.desc}</div>
               </div>
             ))}
           </div>
@@ -158,9 +159,9 @@ export default function Skills() {
             <CTitle t="Languages" />
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 20px', flex: 1, alignContent: 'space-evenly' }}>
               {LANGS.map(l => (
-                <div key={l.name} style={{ borderLeft: '2px solid rgba(0,212,255,0.35)', paddingLeft: 10 }}>
-                  <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 12, color: '#00d4ff', fontWeight: 700, marginBottom: 3 }}>{l.name}</div>
-                  <div style={{ fontSize: 12, color: '#7a9ab0', lineHeight: 1.4 }}>{l.ctx}</div>
+                <div key={l.name} style={{ borderLeft: '2px solid rgba(0, 240, 255,0.35)', paddingLeft: 10 }}>
+                  <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 12, color: '#00f0ff', fontWeight: 700, marginBottom: 3 }}>{l.name}</div>
+                  <div style={{ fontSize: 12, color: '#9ca3af', lineHeight: 1.4 }}>{l.ctx}</div>
                 </div>
               ))}
             </div>
@@ -176,8 +177,8 @@ export default function Skills() {
               <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1 }}>
                 <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#00ff88', boxShadow: '0 0 4px #00ff88', flexShrink: 0 }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 13, color: '#e8f4ff' }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: '#7a9ab0' }}>{p.desc}</div>
+                  <div style={{ fontSize: 13, color: '#d1d5db' }}>{p.name}</div>
+                  <div style={{ fontSize: 12, color: '#9ca3af' }}>{p.desc}</div>
                 </div>
               </div>
             ))}
@@ -193,7 +194,7 @@ export default function Skills() {
               {CERTS.map(c => (
                 <div key={c.short} style={{
                   background: '#0a1018',
-                  border: `1px solid ${c.active ? 'rgba(0,212,255,0.4)' : 'rgba(0,212,255,0.1)'}`,
+                  border: `1px solid ${c.active ? 'rgba(0, 240, 255,0.4)' : 'rgba(0, 240, 255,0.1)'}`,
                   borderRadius: 6,
                   padding: '6px 8px',
                   display: 'flex',
@@ -207,14 +208,14 @@ export default function Skills() {
                   minHeight: 0,
                 }}>
                   {c.active && (
-                    <div style={{ position: 'absolute', top: 8, right: -18, background: '#00d4ff', color: '#000', fontSize: 7, fontWeight: 700, padding: '2px 22px', transform: 'rotate(45deg)', letterSpacing: '0.04em' }}>
+                    <div style={{ position: 'absolute', top: 8, right: -18, background: '#00f0ff', color: '#000', fontSize: 7, fontWeight: 700, padding: '2px 22px', transform: 'rotate(45deg)', letterSpacing: '0.04em' }}>
                       ACTIVE
                     </div>
                   )}
-                  <div style={{ fontSize: 12, color: '#7a9ab0' }}>{c.year}</div>
-                  <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 14, fontWeight: 700, color: '#00d4ff' }}>{c.short}</div>
+                  <div style={{ fontSize: 12, color: '#9ca3af' }}>{c.year}</div>
+                  <div style={{ fontFamily: 'Orbitron, monospace', fontSize: 14, fontWeight: 700, color: '#00f0ff' }}>{c.short}</div>
                   <div style={{ fontSize: 13, color: '#c8d8e8', textAlign: 'center' }}>{c.full}</div>
-                  <span style={{ fontSize: 13, padding: '2px 7px', borderRadius: 3, border: `1px solid ${c.color}`, color: c.color, background: c.active ? 'rgba(0,212,255,0.08)' : 'transparent' }}>
+                  <span style={{ fontSize: 13, padding: '2px 7px', borderRadius: 3, border: `1px solid ${c.color}`, color: c.color, background: c.active ? 'rgba(0, 240, 255,0.08)' : 'transparent' }}>
                     {c.status}
                   </span>
                 </div>
@@ -226,15 +227,15 @@ export default function Skills() {
       </div>
  
       {/* STATUS BAR */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '5px 16px', background: '#080d12', border: '1px solid rgba(0,212,255,0.15)', borderRadius: 5, fontSize: 12, color: '#7a9ab0', flexShrink: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '5px 16px', background: 'rgba(10, 10, 10, 0.7)', border: '1px solid rgba(0, 240, 255,0.15)', borderRadius: 5, fontSize: 12, color: '#9ca3af', flexShrink: 0 }}>
         {STATUS.map((s, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            {i > 0 && <span style={{ color: 'rgba(0,212,255,0.15)', marginRight: 4 }}>|</span>}
+            {i > 0 && <span style={{ color: 'rgba(0, 240, 255,0.15)', marginRight: 4 }}>|</span>}
             <div style={{ width: 5, height: 5, borderRadius: '50%', background: s.dot, boxShadow: `0 0 4px ${s.dot}` }} />
             <span>{s.text}</span>
           </div>
         ))}
-        <span style={{ marginLeft: 'auto', color: '#00d4ff', letterSpacing: '0.08em' }}>KURRE_CHAITANYA@HIT:~/skills$_</span>
+        <span style={{ marginLeft: 'auto', color: '#00f0ff', letterSpacing: '0.08em' }}>KURRE_CHAITANYA@HIT:~/skills$_</span>
       </div>
  
     </section>

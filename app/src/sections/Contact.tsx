@@ -82,9 +82,9 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'alex.carter@email.com' },
-    { icon: Phone, label: 'Phone', value: '+91 98765 43210' },
-    { icon: MapPin, label: 'Location', value: 'Bangalore, India' },
+    { icon: Mail, label: 'Email', value: 'kurrechaitanya@email.com' },
+    { icon: Phone, label: 'Phone', value: '+91 7569847109' },
+    { icon: MapPin, label: 'Location', value: 'Chennai, India' },
   ];
 
   const socialLinks = [

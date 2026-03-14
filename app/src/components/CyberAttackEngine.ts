@@ -31,6 +31,21 @@ const cities: City[] = [
   { name: "Dubai",         lat: 25.20,  lon: 55.27  },
   { name: "Johannesburg",  lat: -26.20, lon: 28.04  },
   { name: "Toronto",       lat: 43.65,  lon: -79.38 },
+{ name: "Berlin",        lat: 52.52,  lon: 13.40  },
+  { name: "Paris",         lat: 48.85,  lon: 2.35   },
+  { name: "Seoul",         lat: 37.57,  lon: 126.98 },
+  { name: "Jakarta",       lat: -6.21,  lon: 106.85 },
+  { name: "Cairo",         lat: 30.04,  lon: 31.24  },
+  { name: "Lagos",         lat: 6.52,   lon: 3.38   },
+  { name: "Mexico City",   lat: 19.43,  lon: -99.13 },
+  { name: "Buenos Aires",  lat: -34.61, lon: -58.38 },
+  { name: "Istanbul",      lat: 41.01,  lon: 28.95  },
+  { name: "Bangkok",       lat: 13.75,  lon: 100.52 },
+  { name: "Nairobi",       lat: -1.29,  lon: 36.82  },
+  { name: "Los Angeles",   lat: 34.05,  lon: -118.24},
+  { name: "Delhi",         lat: 28.61,  lon: 77.21  },
+  { name: "Riyadh",        lat: 24.69,  lon: 46.72  },
+  { name: "Amsterdam",     lat: 52.37,  lon: 4.90   },
 ]
 
 export function startCyberAttacks(svg: SVGSVGElement | null) {
