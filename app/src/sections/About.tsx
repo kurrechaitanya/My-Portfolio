@@ -86,7 +86,7 @@ Driven by one principle — understand how systems break in order to build ones 
       
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-3">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-4">
             <User className="w-4 h-4 text-cyan-400" />
             <span className="text-sm text-cyan-300 font-mono-tech">ABOUT ME</span>
@@ -128,7 +128,7 @@ Driven by one principle — understand how systems break in order to build ones 
 <span className="inline-block w-[2px] h-4 bg-cyan-400 ml-1 animate-blink" />              </div>
 
               {/* Terminal Footer */}
-              <div className="mt-6 pt-4 border-t border-cyan-500/20 flex items-center justify-between text-xs text-gray-500 font-mono-tech">
+              <div className="mt-4 pt-4 border-t border-cyan-500/20 flex items-center justify-between text-xs text-gray-500 font-mono-tech">
                 <span>UTF-8</span>
                 <span>Line 1, Col 1</span>
               </div>

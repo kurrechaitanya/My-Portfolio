@@ -28,11 +28,7 @@ export default function Hero() {
 
       <div
         className="absolute inset-0 z-[-10]"
-        style={{
-          backgroundImage: "url(/hero-bg.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
+        
       />
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
@@ -228,10 +224,10 @@ boxShadow: '0 0 30px #00ffff66, 0 0 60px #00ffff22, inset 0 0 20px #00ffff22',  
             {/* ── STATS BAR (new) ── */}
             <div className="flex gap-8 mt-8 font-mono text-xs border-t border-cyan-900/40 pt-6">
               {[
-                { label: "THREATS NEUTRALIZED", value: "99.2%", color: "#00ff88" },
-                { label: "SYSTEMS MONITORED",   value: "2,441", color: "#00ffff" },
-                { label: "UPTIME",              value: "99.9%", color: "#00ffff" },
-                { label: "ACTIVE ATTACKS",      value: "LIVE",  color: "#ff3b3b", blink: true },
+               { label: "CGPA",         value: "9.68",        color: "#00ff88" },
+{ label: "SECURITY+",    value: "IN PROGRESS", color: "#00ffff" },
+{ label: "CTF WINS",     value: "COLLEGE",     color: "#00ffff" },
+{ label: "GITHUB", value: "BUILDING", color: "#00d4ff", blink: true }
               ].map((stat) => (
                 <div key={stat.label} className="flex flex-col gap-1">
                   <span className="text-gray-500 tracking-widest text-[10px]">{stat.label}</span>
