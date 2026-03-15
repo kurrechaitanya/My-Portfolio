@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
  
 const TOOLS = [
   { name: 'Burp Suite', desc: 'SQLi & XSS testing · OWASP testing' },
   { name: 'Metasploit', desc: 'Exploitation · Payload generation' },
   { name: 'Nmap',       desc: 'Port scanning · OS fingerprinting' },
   { name: 'Wireshark',  desc: 'Packet capture · Traffic analysis' },
-  { name: 'Kali Linux', desc: 'Primary attack OS · Daily driver' },
+  { name: 'Kali Linux', desc: 'Primary OS · Daily driver' },
   { name: 'Netcat',     desc: 'Reverse shells · Bind shells' },
 ];
  
@@ -64,6 +64,13 @@ function CTitle({ t }: { t: string }) {
  
 export default function Skills() {
   const [hov, setHov] = useState<string | null>(null);
+const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+useEffect(() => {
+  const handleResize = () => setIsMobile(window.innerWidth < 768);
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
  
   const card: React.CSSProperties = {
     background: 'rgba(10, 10, 10, 0.7)',
@@ -87,11 +94,12 @@ export default function Skills() {
  
   return (
     <section id="skills" style={{
-      height: '100vh',
-      overflow: 'hidden',
-      background: 'transparent',
-      padding: '62px 40px 10px',
-      fontFamily: "'Share Tech Mono', monospace",
+  minHeight: '100vh',
+  height: isMobile ? 'auto' : '100vh',
+  overflow: isMobile ? 'auto' : 'hidden',
+  background: 'transparent',
+  padding: isMobile ? '62px 16px 20px' : '62px 40px 10px',
+    fontFamily: "'Share Tech Mono', monospace",
       color: '#c8d8e8',
       display: 'flex',
       flexDirection: 'column',
@@ -113,13 +121,13 @@ export default function Skills() {
         flex: 1,
         minHeight: 0,
         display: 'grid',
-gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-gridTemplateRows: 'auto',
+gridTemplateColumns: isMobile ? '1fr' : '1fr 1.8fr 1fr',
+gridTemplateRows: isMobile ? 'auto' : '1fr 0.75fr',
 gap: 8,
       }}>
  
         {/* CARD 1 — OFFENSIVE CORE — spans both rows */}
-        <div style={{ ...card, gridRow: 'auto' }}>
+        <div style={{ ...card, gridRow: 'span 2' }}>
           <THead label="offensive_core.exe" />
           <div style={{ ...body, justifyContent: 'space-between', gap: 5 }}>
             <CTitle t="Offensive Core" />
@@ -186,7 +194,7 @@ gap: 8,
         </div>
  
         {/* CARD 4 — CERTIFICATIONS — bottom spans 2 cols */}
-        <div style={{ ...card, gridColumn: 'auto' }}>
+        <div style={{ ...card, gridColumn: 'span 2' }}>
           <THead label="certifications.exe — roadmap" />
           <div style={body}>
             <CTitle t="Certifications & Roadmap" />
