@@ -106,7 +106,7 @@ export default function ZeroDayScreen({ onComplete }: Props) {
     }, 2000))
 
     t.push(setTimeout(() => {
-      addAlert(`   ORIGIN:         VIJAYAWADA, IN`, 'dim', false)
+      addAlert(`   ORIGIN:         CHENNAI, IN`, 'dim', false)
     }, 2300))
 
     t.push(setTimeout(() => {

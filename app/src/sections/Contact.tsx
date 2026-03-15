@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, Mail, MapPin, Phone, Linkedin, Github, Twitter, MessageSquare } from 'lucide-react';
+import { Send, Mail, MapPin, Linkedin, Github, Twitter, MessageSquare } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,10 +57,14 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  await fetch('https://formspree.io/f/mnjgbzvk', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  });
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
@@ -82,22 +86,20 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'kurrechaitanya@email.com' },
-    { icon: Phone, label: 'Phone', value: '+91 7569847109' },
+    { icon: Mail, label: 'Email', value: 'kurrechaitanya@gmail.com' } ,
     { icon: MapPin, label: 'Location', value: 'Chennai, India' },
   ];
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: '#' },
-    { icon: Linkedin, label: 'LinkedIn', href: '#' },
-    { icon: Twitter, label: 'Twitter', href: '#' },
-  ];
+  { icon: Github, label: 'GitHub', href: 'https://github.com/kurrechaitanya/My-Portfolio' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/kurrechaitanya' },
+];
 
   return (
     <section
       ref={sectionRef}
       id="contact"
-      className="relative min-h-screen w-full flex items-center justify-center py-20"
+      className="relative min-h-screen w-full flex items-center justify-center py-16"
     >
       {/* Background */}
       <div className="absolute inset-0 cyber-grid opacity-30" />
@@ -148,8 +150,7 @@ export default function Contact() {
             INITIATE <span className="text-cyan-400">CONNECTION</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Have a project in mind? Let's collaborate and build something amazing together.
-          </p>
+Looking to collaborate on security research, CTF challenges, or red team tool development? Let's connect.          </p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8">
@@ -173,7 +174,7 @@ export default function Contact() {
             {/* Social Links */}
             <div className="glass-panel rounded-lg p-6">
               <h3 className="font-orbitron font-bold text-white mb-4">
-                FOLLOW ME
+                FIND ME ON
               </h3>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => (
@@ -195,9 +196,9 @@ export default function Contact() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="contact-form glass-panel-strong rounded-xl p-8"
+              className="contact-form glass-panel-strong rounded-xl p-4"
             >
-              <div className="space-y-6">
+              <div className="space-y-2">
                 {/* Name Input */}
                 <div className="relative">
                   <label className="block text-sm text-gray-400 mb-2 font-mono-tech">
@@ -241,7 +242,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
+                    rows={3}
                     className="w-full bg-black/50 border border-cyan-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-all duration-300 font-mono-tech resize-none"
                     placeholder="Enter your message..."
                   />

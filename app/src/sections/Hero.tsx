@@ -219,17 +219,15 @@ boxShadow: '0 0 30px #00ffff66, 0 0 60px #00ffff22, inset 0 0 20px #00ffff22',  
 
             {/* BUTTONS */}
             <div className="flex gap-4">
-              <a className="neon-button px-8 py-3">VIEW PROJECTS</a>
-              <a className="px-8 py-3 border border-white/30 rounded">CONTACT ME</a>
-            </div>
+<a href="#projects" className="neon-button px-8 py-3">VIEW PROJECTS</a><a href="#contact" className="px-8 py-3 border border-white/30 rounded">CONTACT ME</a>            </div>
 
             {/* ── STATS BAR (new) ── */}
             <div className="flex gap-8 mt-8 font-mono text-xs border-t border-cyan-900/40 pt-6">
               {[
                { label: "CGPA",         value: "9.68",        color: "#00ff88" },
 { label: "SECURITY+",    value: "IN PROGRESS", color: "#00ffff" },
-{ label: "CTF WINS",     value: "COLLEGE",     color: "#00ffff" },
-{ label: "GITHUB", value: "BUILDING", color: "#00d4ff", blink: true }
+{ label: "CTF WINS",     value: "2",     color: "#00ffff" },
+{ label: "GITHUB", value: "ACTIVE", color: "#00ff88", blink: false }
               ].map((stat) => (
                 <div key={stat.label} className="flex flex-col gap-1">
                   <span className="text-gray-500 tracking-widest text-[10px]">{stat.label}</span>

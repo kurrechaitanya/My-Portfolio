@@ -64,7 +64,9 @@ function CTitle({ t }: { t: string }) {
  
 export default function Skills() {
   const [hov, setHov] = useState<string | null>(null);
-const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [hovPlatform, setHovPlatform] = useState<string | null>(null);
+  const [hovCert, setHovCert] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
 useEffect(() => {
   const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -179,13 +181,29 @@ gap: 8,
         {/* CARD 3 — PLATFORMS — top right */}
         <div style={card}>
           <THead label="platforms.sh" />
-          <div style={{ ...body, justifyContent: 'space-between' }}>
+          <div style={{ ...body, justifyContent: 'space-between', gap: 5 }}>
             <CTitle t="Platforms" />
             {PLATFORMS.map(p => (
-              <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1 }}>
+              <div
+                key={p.name}
+                onMouseEnter={() => setHovPlatform(p.name)}
+                onMouseLeave={() => setHovPlatform(null)}
+                style={{
+                  padding: '5px 8px',
+                  borderRadius: 4,
+                  cursor: 'default',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: hovPlatform === p.name ? 'rgba(0, 240, 255,0.07)' : '#0a1018',
+                  border: `1px solid ${hovPlatform === p.name ? 'rgba(0, 240, 255,0.5)' : 'rgba(0, 240, 255,0.1)'}`,
+                  boxShadow: hovPlatform === p.name ? '0 0 8px rgba(0, 240, 255,0.06)' : 'none',
+                  transition: 'all 0.2s ease',
+                }}
+              >
                 <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#00ff88', boxShadow: '0 0 4px #00ff88', flexShrink: 0 }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 13, color: '#d1d5db' }}>{p.name}</div>
+                  <div style={{ fontSize: 13, color: '#d1d5db', fontWeight: 700 }}>{p.name}</div>
                   <div style={{ fontSize: 12, color: '#9ca3af' }}>{p.desc}</div>
                 </div>
               </div>
@@ -200,21 +218,26 @@ gap: 8,
             <CTitle t="Certifications & Roadmap" />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, flex: 1, minHeight: 0 }}>
               {CERTS.map(c => (
-                <div key={c.short} style={{
-                  background: '#0a1018',
-                  border: `1px solid ${c.active ? 'rgba(0, 240, 255,0.4)' : 'rgba(0, 240, 255,0.1)'}`,
-                  borderRadius: 6,
-                  padding: '6px 8px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 4,
-                  position: 'relative',
-                  overflow: 'hidden',
-                  cursor: 'default',
-                  minHeight: 0,
-                }}>
+                <div 
+                  key={c.short}
+                  onMouseEnter={() => setHovCert(c.short)}
+                  onMouseLeave={() => setHovCert(null)}
+                  style={{
+                    background: '#0a1018',
+                    border: `1px solid ${hovCert === c.short ? 'rgba(0, 240, 255,0.5)' : c.active ? 'rgba(0, 240, 255,0.4)' : 'rgba(0, 240, 255,0.1)'}`,
+                    borderRadius: 6,
+                    padding: '6px 8px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 4,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    cursor: 'default',
+                    minHeight: 0,
+                    transition: 'all 0.2s ease',
+                  }}>
                   {c.active && (
                     <div style={{ position: 'absolute', top: 8, right: -18, background: '#00f0ff', color: '#000', fontSize: 7, fontWeight: 700, padding: '2px 22px', transform: 'rotate(45deg)', letterSpacing: '0.04em' }}>
                       ACTIVE
