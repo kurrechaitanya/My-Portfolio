@@ -360,47 +360,96 @@
 }
 @media (max-width: 768px) {
 
-  /* Hide attacks counter on mobile */
-  .fixed.top-6.right-10 {
+  /* Fix whole page overflow — most important */
+  *, *::before, *::after {
+    max-width: 100vw;
+  }
+
+  body, html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  section {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* Hide attacks counter */
+  .fixed {
     display: none !important;
   }
 
-  /* Hide map on mobile */
+  /* Hide map */
   .network-layer {
     display: none !important;
   }
 
-  /* Fix name overflow */
-  .font-orbitron {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-  }
-
-  /* Fix text cutting on right */
-  #home {
-    overflow-x: hidden !important;
-  }
-
+  /* Hero text fix */
   #home .relative.z-10 {
-    padding-right: 16px !important;
     padding-left: 16px !important;
+    padding-right: 16px !important;
+    width: 100% !important;
   }
 
-  /* Skills — force single column */
-  #skills .grid {
+  /* Fix name size */
+  h1.font-orbitron {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    word-break: break-word !important;
+  }
+
+  /* Fix typewriter text overflow */
+  #home p, #home div.mb-8 {
+    font-size: 0.7rem !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    padding-right: 8px !important;
+  }
+
+  /* Stats bar wrap */
+  #home .flex.gap-8 {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  /* About page terminal */
+  #about .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Skills — single column */
+  #skills > div > div {
     grid-template-columns: 1fr !important;
     grid-template-rows: auto !important;
   }
 
-  /* Skills — remove span overrides */
-  #skills .grid > div {
+  #skills > div > div > div {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  /* Skills inline styles override */
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  [style*="gridColumn: span"] {
     grid-column: span 1 !important;
+  }
+
+  [style*="gridRow: span"] {
     grid-row: span 1 !important;
   }
 
-  /* Fix whole page overflow */
-  body, html {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
+  /* Cert cards stack */
+  [style*="repeat(4"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Remove horizontal scroll from all containers */
+  div {
+    max-width: 100% !important;
   }
 }

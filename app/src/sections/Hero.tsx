@@ -11,11 +11,13 @@ export default function Hero() {
   const nameRef = useRef(null)
   const profileRef = useRef(null)
 
-  useEffect(() => {
+useEffect(() => {
+  const timer = setTimeout(() => {
     const svg = document.getElementById("attack-layer") as SVGSVGElement | null
     startCyberAttacks(svg)
-  }, [])
-
+  }, 2000)
+  return () => clearTimeout(timer)
+}, [])
   return (
     <section
       ref={sectionRef}
