@@ -1,6 +1,12 @@
+https://github.com/kurrechaitanya/My-Portfolio/blob/a7ca8b144a28dd23b243375ea98810f080043a50/app/public/home.png
+https://github.com/kurrechaitanya/My-Portfolio/blob/a7ca8b144a28dd23b243375ea98810f080043a50/app/public/About.png
+https://github.com/kurrechaitanya/My-Portfolio/blob/a7ca8b144a28dd23b243375ea98810f080043a50/app/public/Skills.png
+https://github.com/kurrechaitanya/My-Portfolio/blob/a7ca8b144a28dd23b243375ea98810f080043a50/app/public/Projects.png
+https://github.com/kurrechaitanya/My-Portfolio/blob/a7ca8b144a28dd23b243375ea98810f080043a50/app/public/Contact.png
+
 Kurre Chaitanya — Cybersecurity Portfolio
 Offensive Security Developer · Red Team Tool Builder · AI-Assisted Security Researcher
-Live — https://my-portfolio-ybfj.vercel.app
+Live — https://kurrechaitanya.com
 
 About
 Second-year B.Tech Cybersecurity student at Hindustan Institute of Technology, Chennai with a CGPA of 9.68.
