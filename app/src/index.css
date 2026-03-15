@@ -371,3 +371,45 @@
     display: none;
   }
 }
+@media (max-width: 768px) {
+
+  /* Hero — hide map, fix name size */
+  .network-layer {
+    display: none !important;
+  }
+
+  .font-orbitron {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+
+  /* Hero — fix text overflow */
+  #home .relative.z-10 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Skills — stack columns vertically */
+  #skills > div > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  /* Skills — fix card widths */
+  #skills [style*="gridColumn"] {
+    grid-column: 1 !important;
+  }
+
+  #skills [style*="gridRow"] {
+    grid-row: auto !important;
+  }
+
+  /* Fix horizontal overflow on whole page */
+  body {
+    overflow-x: hidden;
+  }
+
+  section {
+    overflow-x: hidden;
+  }
+}
