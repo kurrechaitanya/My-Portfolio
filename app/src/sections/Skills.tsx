@@ -113,13 +113,13 @@ export default function Skills() {
         flex: 1,
         minHeight: 0,
         display: 'grid',
-        gridTemplateColumns: '1fr 1.8fr 1fr',
-        gridTemplateRows: '1fr 0.75fr',
-        gap: 8,
+gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+gridTemplateRows: 'auto',
+gap: 8,
       }}>
  
         {/* CARD 1 — OFFENSIVE CORE — spans both rows */}
-        <div style={{ ...card, gridRow: 'span 2' }}>
+        <div style={{ ...card, gridRow: 'auto' }}>
           <THead label="offensive_core.exe" />
           <div style={{ ...body, justifyContent: 'space-between', gap: 5 }}>
             <CTitle t="Offensive Core" />
@@ -186,7 +186,7 @@ export default function Skills() {
         </div>
  
         {/* CARD 4 — CERTIFICATIONS — bottom spans 2 cols */}
-        <div style={{ ...card, gridColumn: 'span 2' }}>
+        <div style={{ ...card, gridColumn: 'auto' }}>
           <THead label="certifications.exe — roadmap" />
           <div style={body}>
             <CTitle t="Certifications & Roadmap" />
