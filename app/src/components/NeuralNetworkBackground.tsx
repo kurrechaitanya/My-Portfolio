@@ -26,7 +26,7 @@ export default function NeuralNetworkBackground(){
          enable:true,
          distance:150,
          color:"#00ffff",
-         opacity:0.2
+         opacity:0.4
        },
 
        move:{
@@ -36,7 +36,7 @@ export default function NeuralNetworkBackground(){
 
        size:{value:2},
 
-       opacity:{value:0.5}
+       opacity:{value:0.8}
 
      }
 

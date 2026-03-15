@@ -329,12 +329,7 @@
   0%   { transform: translateY(-100%) }
   100% { transform: translateY(200%) }
 }
-/* Hide particle canvas/container */
-.particles, 
-#particles-js, 
-.particle-container {
-    display: none !important;
-}
+
 .name-gradient {
   background: linear-gradient(90deg, #00E5FF 0%, #7000FF 50%, #00E5FF 100%);
   background-size: 200% auto;

@@ -100,12 +100,12 @@ export function startCyberAttacks(svg: SVGSVGElement | null) {
     const type  = roll < 0.5 ? "attack" : roll < 0.75 ? "defend" : "critical"
 
     const color = type === "attack"   ? "#ff3b3b"
-                : type === "defend"   ? "#00ffff"
-                : "#ff00ff"
+                : type === "defend"   ? "#00ff88"
+                : "#ffcc00"
 
-    const glow  = type === "attack"   ? "drop-shadow(0 0 6px #ff3b3b)"
-                : type === "defend"   ? "drop-shadow(0 0 6px #00ffff)"
-                : "drop-shadow(0 0 10px #ff00ff)"
+ const glow  = type === "attack"   ? "drop-shadow(0 0 6px #ff3b3b)"
+            : type === "defend"   ? "drop-shadow(0 0 6px #00ff88)"
+            : "drop-shadow(0 0 10px #ffcc00)"
 
     const strokeW = type === "critical" ? "1.4" : "0.8"
     const speed   = type === "critical" ? 0.014 : 0.008
@@ -193,7 +193,7 @@ export function startCyberAttacks(svg: SVGSVGElement | null) {
     animate()
   }
 
-  setTimeout(() => createAttack(), 300)
-  setTimeout(() => createAttack(), 900)
-  setInterval(createAttack, 1800)
+  setTimeout(() => createAttack(), 2000)
+setTimeout(() => createAttack(), 3000)
+setInterval(createAttack, 2500)
 }

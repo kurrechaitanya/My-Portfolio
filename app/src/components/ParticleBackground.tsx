@@ -34,7 +34,7 @@ function Particles() {
 export default function ParticleBackground() {
   return (
     <div className="absolute inset-0 z-[1] ">
-      <Canvas camera={{ position: [0, 0, 5] }}>
+      <Canvas camera={{ position: [0, 0, 5] }} gl={{ alpha: true }} style={{ background: 'transparent' }}>
         <Particles />
       </Canvas>
     </div>

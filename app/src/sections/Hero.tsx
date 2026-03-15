@@ -26,15 +26,15 @@ useEffect(() => {
     >
 
       <ParticleBackground />
-      <NeuralNetworkBackground />
+<NeuralNetworkBackground />
+<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-[11]" />
 
       <div
         className="absolute inset-0 z-[-10]"
         
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
-      <div className="absolute inset-0 cyber-grid opacity-40" />
+<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-[0]" />      <div className="absolute inset-0 cyber-grid opacity-20" />
 
       {/* MAP + ATTACK LAYER */}
       <div className="network-layer"> 
