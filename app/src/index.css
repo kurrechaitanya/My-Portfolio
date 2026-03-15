@@ -359,57 +359,48 @@
   animation: blink 1s infinite;
 }
 @media (max-width: 768px) {
-  .font-orbitron.font-black {
-    font-size: 2.2rem;
+
+  /* Hide attacks counter on mobile */
+  .fixed.top-6.right-10 {
+    display: none !important;
   }
 
-  .network-layer {
-    display: none;
-  }
-
-  #home .fixed {
-    display: none;
-  }
-}
-@media (max-width: 768px) {
-
-  /* Hero — hide map, fix name size */
+  /* Hide map on mobile */
   .network-layer {
     display: none !important;
   }
 
+  /* Fix name overflow */
   .font-orbitron {
     font-size: 2rem !important;
-    line-height: 1.2;
+    line-height: 1.2 !important;
   }
 
-  /* Hero — fix text overflow */
+  /* Fix text cutting on right */
+  #home {
+    overflow-x: hidden !important;
+  }
+
   #home .relative.z-10 {
-    padding-left: 16px !important;
     padding-right: 16px !important;
+    padding-left: 16px !important;
   }
 
-  /* Skills — stack columns vertically */
-  #skills > div > div:nth-child(2) {
+  /* Skills — force single column */
+  #skills .grid {
     grid-template-columns: 1fr !important;
     grid-template-rows: auto !important;
   }
 
-  /* Skills — fix card widths */
-  #skills [style*="gridColumn"] {
-    grid-column: 1 !important;
+  /* Skills — remove span overrides */
+  #skills .grid > div {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
   }
 
-  #skills [style*="gridRow"] {
-    grid-row: auto !important;
-  }
-
-  /* Fix horizontal overflow on whole page */
-  body {
-    overflow-x: hidden;
-  }
-
-  section {
-    overflow-x: hidden;
+  /* Fix whole page overflow */
+  body, html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
   }
 }
