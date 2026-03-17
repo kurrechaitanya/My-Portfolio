@@ -8,7 +8,8 @@ Live — https://kurrechaitanya.com
 
 ## Screenshots
 
-screenshot-home.png
+
+
 
 screenshot-about.png
 
