@@ -27,7 +27,6 @@ useEffect(() => {
 
       <ParticleBackground />
 <NeuralNetworkBackground />
-<div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-[11]" />
 
       <div
         className="absolute inset-0 z-[-10]"
@@ -219,7 +218,8 @@ boxShadow: '0 0 30px #00ffff66, 0 0 60px #00ffff22, inset 0 0 20px #00ffff22',  
 
             {/* BUTTONS */}
             <div className="flex gap-4">
-<a href="#projects" className="neon-button px-8 py-3">VIEW PROJECTS</a><a href="#contact" className="px-8 py-3 border border-white/30 rounded">CONTACT ME</a>            </div>
+<a href="#projects" className="neon-button px-8 py-3">VIEW PROJECTS</a>
+<a href="#contact" className="px-8 py-3 border border-white/30 rounded">CONTACT ME</a>            </div>
 
             {/* ── STATS BAR (new) ── */}
             <div className="flex gap-8 mt-8 font-mono text-xs border-t border-cyan-900/40 pt-6">
