@@ -1,12 +1,14 @@
-screenshot-home.png
+![Home](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-home.png)
 
-screenshot-about.png
 
-screenshot-skills.png
+![about](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-about.png)
 
-screenshot-projects.png
 
-screenshot-contact.png
+![skills](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-skills.png)
+
+![projects](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-projects.png)
+
+![contact](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-contact.png)
 
 
 

@@ -8,16 +8,18 @@ Live — https://kurrechaitanya.com
 
 ## Screenshots
 
+![Home](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-home.png)
 
 
+![about](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-about.png)
 
-screenshot-about.png
 
-screenshot-skills.png
+![skills](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-skills.png)
 
-screenshot-projects.png
+![projects](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-projects.png)
 
-screenshot-contact.png
+![contact](https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-contact.png)
+
 
 
 ## About
