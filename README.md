@@ -1,3 +1,25 @@
+
+
+https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-home.png
+
+
+
+https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-about.png
+
+
+
+https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-skills.png
+
+
+
+https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-projects.png
+
+
+
+https://raw.githubusercontent.com/kurrechaitanya/My-Portfolio/main/app/public/screenshots/screenshot-contact.png
+
+
+
 \# Kurre Chaitanya — Cybersecurity Portfolio
 
 
